@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, json
 from flask import request
 import pickle
-import ast
 import sys
 
 app = Flask(__name__)
