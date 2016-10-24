@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, json
-from flask import request
+from flask import request, render_template
 import pickle
 import sys
 
@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Sentiment Analysis service is online'
+    return render_template('index.html')
 
 @app.route('/api/analyse', methods=['POST', 'GET'])
 def sentiment_analysis():
@@ -32,4 +32,8 @@ def sentiment_analysis():
     else:
         reviewSentiment = 'Negative'
 
-    return jsonify(comment, reviewSentiment)
+    response = jsonify(commentString=comment, sentimentValue=reviewSentiment)
+
+    # Allow access to API from React front end in browser
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
