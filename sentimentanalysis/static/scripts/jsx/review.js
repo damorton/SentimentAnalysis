@@ -13,7 +13,7 @@ var ReviewComponent = React.createClass({
       headers: {'Access-Control-Allow-Origin': '*'}
     };
 
-    axios.get(`http://9.162.219.154:5000/api/analyse?review=` + this.state.sendCommentString, config)
+    axios.get(`http://sa.dockervm/api/analyse?review=` + this.state.sendCommentString, config)
     .then( result => {
       this.setState({
         commentString : result.data.commentString,
